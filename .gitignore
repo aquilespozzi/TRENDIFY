@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Build output
+client/dist/
+
+# Environment variables (NEVER subir esto)
+.env
+server/.env
+client/.env
+
+# Database (se crea sola en el servidor)
+server/db/*.db
+server/db/*.sqlite
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
