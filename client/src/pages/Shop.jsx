@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import API_URL from '../config/api';
 import ProductCard from '../components/ProductCard';
 
 const categories = ['Todos', 'Audio', 'Wearables', 'Accesorios', 'Gaming'];
@@ -12,7 +13,7 @@ const Shop = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch('http://localhost:5001/api/products');
+        const res = await fetch(`${API_URL}/api/products`);
         const data = await res.json();
         setProducts(data);
       } catch (err) {

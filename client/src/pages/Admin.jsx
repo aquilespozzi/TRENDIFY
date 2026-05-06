@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import API_URL from '../config/api';
 
 const ADMIN_PASSWORD = 'trendify2025'; // Debe coincidir con el servidor
 const CATEGORIES = ['Audio', 'Wearables', 'Accesorios', 'Gaming', 'General'];
@@ -39,7 +40,7 @@ const Admin = () => {
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:5001/api/products');
+      const res = await fetch(`${API_URL}/api/products`);
       const data = await res.json();
       setProducts(data);
     } catch {
@@ -79,8 +80,8 @@ const Admin = () => {
     e.preventDefault();
     setSaving(true);
     const url = editingId
-      ? `http://localhost:5001/api/products/${editingId}`
-      : 'http://localhost:5001/api/products';
+      ? `${API_URL}/api/products/${editingId}`
+      : `${API_URL}/api/products`;
     const method = editingId ? 'PUT' : 'POST';
     try {
       const res = await fetch(url, {
@@ -126,7 +127,7 @@ const Admin = () => {
   const handleDelete = async (id, name) => {
     if (!window.confirm(`¿Eliminar "${name}"?`)) return;
     try {
-      const res = await fetch(`http://localhost:5001/api/products/${id}`, {
+      const res = await fetch(`${API_URL}/api/products/${id}`, {
         method: 'DELETE',
         headers: { 'x-admin-password': ADMIN_PASSWORD },
       });

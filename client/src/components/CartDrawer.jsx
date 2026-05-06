@@ -1,6 +1,7 @@
 import React from 'react';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
+import API_URL from '../config/api';
 
 const CartDrawer = () => {
   const { cartItems, isOpen, setIsOpen, removeFromCart, updateQuantity, cartTotal } = useCart();
@@ -8,7 +9,7 @@ const CartDrawer = () => {
 
   const handleCheckout = async () => {
     try {
-      const res = await fetch('http://localhost:5001/api/payment/create_preference', {
+      const res = await fetch(`${API_URL}/api/payment/create_preference`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ items: cartItems }),
